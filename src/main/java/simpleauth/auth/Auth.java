@@ -26,10 +26,10 @@ public class Auth extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        Objects.requireNonNull(getCommand("forcelogin")).setExecutor(new ForceLoginCommand(this));
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         Objects.requireNonNull(getCommand("register")).setExecutor(new RegisterCommand(this));
         Objects.requireNonNull(getCommand("login")).setExecutor(new LoginCommand(this));
-        Objects.requireNonNull(getCommand("forcelogin")).setExecutor(new ForceLoginCommand(this));
         loadPlayerData();
     }
 
