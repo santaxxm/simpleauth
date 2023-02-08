@@ -3,3 +3,13 @@ version: '${project.version}'
 main: simpleauth.auth.Auth
 api-version: 1.19
 authors: [ santaxxm ]
+
+commands:
+  register:
+    permission: auth.register
+    permission-message: You do not have permission!
+    usage: /register <nickname> <password>
+  login:
+    permission: auth.login
+    permission-message: You do not have permission!
+    usage: /login <nickname> <password>

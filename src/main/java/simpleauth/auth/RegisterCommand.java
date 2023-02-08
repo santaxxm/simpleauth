@@ -20,6 +20,10 @@ public class RegisterCommand implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
+        if (!player.hasPermission("auth.register")) {
+            player.sendMessage("You do not have permission to use this command.");
+            return true;
+        }
         if (args.length < 2) {
             player.sendMessage("Usage: /register <nickname> <password>");
             return true;
