@@ -16,7 +16,7 @@ public class ForceLoginCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (!sender.hasPermission("simpleauth.forcelogin")) {
+        if (!sender.hasPermission("auth.forcelogin")) {
             sender.sendMessage("You don't have permission to use this command.");
             return true;
         }
