@@ -29,6 +29,7 @@ public class Auth extends JavaPlugin implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         Objects.requireNonNull(getCommand("register")).setExecutor(new RegisterCommand(this));
         Objects.requireNonNull(getCommand("login")).setExecutor(new LoginCommand(this));
+        Objects.requireNonNull(getCommand("forcelogin")).setExecutor(new ForceLoginCommand(this));
         loadPlayerData();
     }
 
@@ -42,6 +43,7 @@ public class Auth extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         loggedInPlayers.put(player.getName(), false);
         player.sendMessage("Please register or login to move.");
+        player.sendMessage("Use: /register|login nickname password");
     }
 
     @EventHandler

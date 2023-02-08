@@ -13,3 +13,18 @@ commands:
     permission: auth.login
     permission-message: You do not have permission!
     usage: /login <nickname> <password>
+  ForceLoginCommand:
+    permission: auth.forcelogin
+    permission-message: You do not have permission!
+    usage: /forcelogin <nickname>
+
+permissions:
+  auth.forcelogin:
+    description: Allow to force login players
+    default: op
+  auth.login:
+    description: Allow to force login players
+    default: true
+    auth.register:
+      description: Allow to force login players
+      default: true
