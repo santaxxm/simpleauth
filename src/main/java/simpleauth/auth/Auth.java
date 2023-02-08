@@ -122,7 +122,7 @@ public class Auth extends JavaPlugin implements Listener {
         private final String name;
         private final String password;
 
-        private PlayerData(String name, String password) {
+        public PlayerData(String name, String password) {
             this.name = name;
             this.password = password;
         }
