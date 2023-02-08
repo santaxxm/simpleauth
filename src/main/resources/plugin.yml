@@ -1,0 +1,5 @@
+name: Auth
+version: '${project.version}'
+main: simpleauth.auth.Auth
+api-version: 1.19
+authors: [ santaxxm ]
