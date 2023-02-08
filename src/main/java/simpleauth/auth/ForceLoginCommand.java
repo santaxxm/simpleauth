@@ -1,5 +1,6 @@
 package simpleauth.auth;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,19 +15,24 @@ public class ForceLoginCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("This command can only be executed by a player.");
+    public boolean onCommand(CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!sender.hasPermission("simpleauth.forcelogin")) {
+            sender.sendMessage("You don't have permission to use this command.");
             return true;
         }
-        Player player = (Player) sender;
         if (args.length < 1) {
-            player.sendMessage("Usage: /forcelogin <nickname>");
+            sender.sendMessage("Usage: /forcelogin <player>");
             return true;
         }
-        String name = args[0];
-        plugin.getLoggedInPlayers().put(name, true);
-        player.sendMessage("Login forced for player " + name + "!");
+        String playerName = args[0];
+        Player targetPlayer = Bukkit.getPlayer(playerName);
+        if (targetPlayer == null) {
+            sender.sendMessage("Player not found.");
+            return true;
+        }
+        plugin.getLoggedInPlayers().put(targetPlayer.getName(), true);
+        targetPlayer.sendMessage("You have been forced to log in.");
+        sender.sendMessage("Player " + playerName + " has been forced to log in.");
         return true;
     }
 }
